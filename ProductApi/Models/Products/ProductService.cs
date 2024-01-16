@@ -8,9 +8,36 @@ namespace ProductApi.Models.Products
     {
         private readonly IProductRepository _productRepository = productRepository;
 
+        public List<ProductDto> GetAll()
+        {
+            var products = productRepository.GetAll();
+
+            return products.Select(product=> new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price
+
+            }).ToList();
+
+            //Linq ile yukarıda foreach döngüsünün aynısını yapabiliriz.
+            //List<ProductDto> productDtos = new List<ProductDto>();
+
+            //foreach (var product in products)
+            //{
+            //    productDtos.Add(new ProductDto
+            //    {
+            //        Id = product.Id,
+            //        Name = product.Name,
+            //        Price = product.Price
+            //    });
+            //}
+            //return productDtos;
+
+        }
         public int AddProduct(ProductAddDtoRequest request)
         {
-            var id = new Random().Next(1, 1000);
+            int id = new Random().Next(1, 1000);
 
             var products = new Product
             {
@@ -22,9 +49,6 @@ namespace ProductApi.Models.Products
             productRepository.Add(products);
 
             return products.Id;
-
-
-
         }
 
         public void DeleteProduct(int id)
@@ -32,17 +56,17 @@ namespace ProductApi.Models.Products
             productRepository.Delete(id);
         }
          
-        public List<Product> GetAllProducts()
-        {
-            return productRepository.GetAll();
-        }
+        
 
-        public void UpdateProduct(Product product)
+        public void Update(ProductUpdateDtoRequest request)
         {
-            if (product == null)
+            Product product = new Product
             {
-                throw new ArgumentNullException(nameof(product));
-            }
+                Id = request.Id,
+                Name = request.Name,
+                Price = request.Price
+
+            };
             productRepository.Update(product);
 
         }

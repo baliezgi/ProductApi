@@ -16,20 +16,62 @@ namespace ProductApi.Controllers
         public IActionResult GetAll()
         {
             
-            var products = productService.GetAllProducts();
-            return Ok(products);
+            return Ok(productService.GetAll());
 
         }
 
-        //[HttpPost]
-        //public IActionResult Add() => Created("", 10);
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            return Ok(productService.GetAll());
+        }
+
+        [HttpGet("page/{page}/size/{size}")]
+        public IActionResult GetProductWithPage(int page, int size)
+        {
+            return Ok(productService.GetAll());
+        }
 
         [HttpPost]
         public IActionResult AddProduct(ProductAddDtoRequest request)
         {
             var result = productService.AddProduct(request);
             return Created("", result);
+
         }
+
+        [HttpPut]
+        public IActionResult Update(ProductUpdateDtoRequest request)
+        {
+
+            productService.Update(request);
+            return NoContent();
+        }
+
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            productService.DeleteProduct(id);
+            return NoContent();
+        }
+
+        
+
+  
+
+        //[Route("simple-add/{version}")]
+        //[HttpPost]
+        //public IActionResult SimpleAdd(ProductAddDtoRequest request, [FromRoute] string version)
+        //{
+        //    var result = productService.AddProduct(request);
+        //    return Created("", result);
+        //}
+
+        //[HttpPost] Add Action 
+        //public IActionResult Add() => Created("", 10);
+
 
 
     }

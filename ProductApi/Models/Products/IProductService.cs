@@ -4,11 +4,16 @@ namespace ProductApi.Models.Products
 {
     public interface IProductService
     {
-        List<Product> GetAllProducts();
+        List<ProductDto> GetAll();
         //Product GetProductById(int id);
         int AddProduct(ProductAddDtoRequest request);
-        void UpdateProduct(Product product);
+        void Update(ProductUpdateDtoRequest product);
         void DeleteProduct(int id);
+        
+
+
+        
+        
 
 
 
