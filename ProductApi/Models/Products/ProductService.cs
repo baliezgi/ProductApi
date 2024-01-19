@@ -56,6 +56,17 @@ namespace ProductApi.Models.Products
             productRepository.Delete(id);
         }
          
+        public ProductDto GetById(int id)
+        {
+            var product = productRepository.GetById(id);
+
+            return new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price
+            };
+        }
         
 
         public void Update(ProductUpdateDtoRequest request)

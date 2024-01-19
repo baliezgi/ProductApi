@@ -9,8 +9,7 @@
         void Update(Product product);
         void Delete(int id);
 
-
-        //Product GetById(int id);
+        Product GetById(int id);
 
     }
 }

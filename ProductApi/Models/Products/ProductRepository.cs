@@ -27,6 +27,11 @@
 
         }
 
+        public Product GetById(int id) 
+        {            
+            return Products.FirstOrDefault(p => p.Id == id);
+        }
+                                                     
         public void Update(Product product)
         {
             var productToUpdateIndex = Products.FindIndex(p => p.Id == product.Id);

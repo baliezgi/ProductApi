@@ -23,21 +23,17 @@ namespace ProductApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            return Ok(productService.GetAll());
+            return Ok(productService.GetById(id));
         }
 
-        [HttpGet("page/{page}/size/{size}")]
-        public IActionResult GetProductWithPage(int page, int size)
-        {
-            return Ok(productService.GetAll());
-        }
+        
 
         [HttpPost]
         public IActionResult AddProduct(ProductAddDtoRequest request)
         {
             var result = productService.AddProduct(request);
             return Created("", result);
-
+            //buraya bak 506 geliyor budy de
         }
 
         [HttpPut]
@@ -50,7 +46,7 @@ namespace ProductApi.Controllers
 
 
 
-        [HttpDelete("{id}")]
+        [HttpGet("{id}")]
         public IActionResult Delete(int id)
         {
             productService.DeleteProduct(id);
