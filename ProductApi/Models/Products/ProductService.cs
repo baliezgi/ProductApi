@@ -35,7 +35,7 @@ namespace ProductApi.Models.Products
             //return productDtos;
 
         }
-        public int AddProduct(ProductAddDtoRequest request)
+        public Product AddProduct(ProductAddDtoRequest request)
         {
             int id = new Random().Next(1, 1000);
 
@@ -48,7 +48,7 @@ namespace ProductApi.Models.Products
             };
             productRepository.Add(products);
 
-            return products.Id;
+            return products;
         }
 
         public void DeleteProduct(int id)
