@@ -26,6 +26,11 @@ namespace ProductApi.Controllers
             return Ok(productService.GetById(id));
         }
 
+        [HttpGet("{id}/totalValue")]
+        public IActionResult GetTotalValue(int id)
+        {
+            return Ok(productService.GetTotalValue(id));
+        }
 
         [HttpPost]
         public IActionResult AddProduct(ProductAddDtoRequest request)

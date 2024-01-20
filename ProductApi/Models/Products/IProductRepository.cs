@@ -10,6 +10,7 @@
         void Delete(int id);
 
         Product GetById(int id);
+        int GetTotalValue(int id);
 
     }
 }

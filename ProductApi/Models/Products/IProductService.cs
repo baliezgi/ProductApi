@@ -9,6 +9,7 @@ namespace ProductApi.Models.Products
         void Update(ProductUpdateDtoRequest product);
         void DeleteProduct(int id);
         ProductDto GetById(int id);
+        int GetTotalValue(int id);
        
 
     }

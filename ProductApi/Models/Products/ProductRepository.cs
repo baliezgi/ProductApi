@@ -1,4 +1,6 @@
-﻿namespace ProductApi.Models.Products
+﻿using ProductApi.Extensions;
+
+namespace ProductApi.Models.Products
 {
     public class ProductRepository : IProductRepository
     {
@@ -26,6 +28,13 @@
             return product;
 
         }
+
+        public int GetTotalValue(int id)
+        {   //with GetById we can get the price of the product
+            int totalPrice = CalculateExt.CalculateTotalPrice(Products.Find(p => p.Id == id));
+            return totalPrice;
+        }
+
 
         public Product GetById(int id) 
         {   

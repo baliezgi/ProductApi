@@ -16,23 +16,10 @@ namespace ProductApi.Models.Products
             {
                 Id = product.Id,
                 Name = product.Name,
-                Price = product.Price
+                Price = product.Price,
+                Stock=product.Stock
 
             }).ToList();
-
-            //Linq ile yukarıda foreach döngüsünün aynısını yapabiliriz.
-            //List<ProductDto> productDtos = new List<ProductDto>();
-
-            //foreach (var product in products)
-            //{
-            //    productDtos.Add(new ProductDto
-            //    {
-            //        Id = product.Id,
-            //        Name = product.Name,
-            //        Price = product.Price
-            //    });
-            //}
-            //return productDtos;
 
         }
         public Product AddProduct(ProductAddDtoRequest request)
@@ -56,6 +43,12 @@ namespace ProductApi.Models.Products
             productRepository.Delete(id);
         }
          
+        public int GetTotalValue(int id)
+        {
+            return productRepository.GetTotalValue(id);
+        }
+
+
         public ProductDto GetById(int id)
         {
             var product = productRepository.GetById(id);
