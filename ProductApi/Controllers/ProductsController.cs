@@ -52,7 +52,7 @@ namespace ProductApi.Controllers
         public IActionResult Delete(int id)
         {
             productService.DeleteProduct(id);
-            return NoContent();
+            return GetAll();
         }
 
 
