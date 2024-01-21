@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProductApi.Filters;
 using ProductApi.Models;
 using ProductApi.Models.DTOs;
 using ProductApi.Models.Products;
@@ -47,7 +48,7 @@ namespace ProductApi.Controllers
             return NoContent();
         }
 
-
+        [ServiceFilter<ActionFilter>]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

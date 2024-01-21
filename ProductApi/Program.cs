@@ -1,3 +1,4 @@
+using ProductApi.Filters;
 using ProductApi.Models.Products;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IProductRepository, ProductRepository>(); //dependency injection
 builder.Services.AddScoped<IProductService, ProductService>();//dependency injection
+builder.Services.AddScoped<ActionFilter>();//dependency injection
 
 builder.Services.AddSwaggerGen();
 

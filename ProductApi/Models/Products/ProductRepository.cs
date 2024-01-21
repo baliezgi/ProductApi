@@ -30,7 +30,7 @@ namespace ProductApi.Models.Products
         }
 
         public int GetTotalValue(int id)
-        {   //with GetById we can get the price of the product
+        {   //with GetById we can get the price of the product. Upside Calculate for like helper method not extencion method.
             int totalPrice = CalculateExt.CalculateTotalPrice(Products.Find(p => p.Id == id));
             return totalPrice;
         }
@@ -45,6 +45,8 @@ namespace ProductApi.Models.Products
         public void Update(Product product)
         {
             var productToUpdateIndex = Products.FindIndex(p => p.Id == product.Id);
+            //CaculatreTotalPrice is an extension method and you have to use upline yo cant use 34.line.
+            product.CalculateTotalPrice();
             Products[productToUpdateIndex].Name = product.Name;
             Products[productToUpdateIndex].Price = product.Price;
         }
