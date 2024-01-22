@@ -1,4 +1,6 @@
-﻿using ProductApi.Models.DTOs;
+﻿using AutoMapper;
+using ProductApi.Models.DTOs;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text.Json;
 
@@ -7,6 +9,7 @@ namespace ProductApi.Models.Products
     public class ProductService(IProductRepository productRepository) : IProductService
     {
         private readonly IProductRepository _productRepository = productRepository;
+        private readonly IMapper _mapper;
 
         public List<ProductDto> GetAll()
         {
@@ -24,18 +27,24 @@ namespace ProductApi.Models.Products
         }
         public Product AddProduct(ProductAddDtoRequest request)
         {
-            int id = new Random().Next(1, 1000);
+            //with automapper
+            var product = _mapper.Map<Product>(request);
+            return product;
 
-            var products = new Product
-            {
-                Id = id,
-                Name = request.Name,
-                Price = request.Price
-                
-            };
-            productRepository.Add(products);
+            #region without automapper
 
-            return products;
+            //int id = new Random().Next(1, 1000);
+
+            //var products = new Product
+            //{
+            //    Id = id,
+            //    Name = request.Name,
+            //    Price = request.Price
+
+            //};
+            //productRepository.Add(products); 
+            #endregion
+
         }
 
         public void DeleteProduct(int id)

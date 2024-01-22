@@ -15,6 +15,23 @@ builder.Services.AddScoped<ActionFilter>();//dependency injection
 builder.Services.AddSwaggerGen();
 
 WebApplication app = builder.Build();
+//Example of middleware
+//app.Use(async (context, next) =>
+//{
+//   Console.WriteLine("Middleware 1 request");
+//    await next();
+//    Console.WriteLine("Middleware 1 response");
+//});
+
+//app.Run(context =>
+//{
+//    Console.WriteLine("Middleware 2");
+//    return Task.CompletedTask;
+//});
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

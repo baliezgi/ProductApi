@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ProductApi.Filters;
 using ProductApi.Models;
 using ProductApi.Models.DTOs;
 using ProductApi.Models.Products;
+
 
 namespace ProductApi.Controllers
 {
@@ -36,8 +38,9 @@ namespace ProductApi.Controllers
         [HttpPost]
         public IActionResult AddProduct(ProductAddDtoRequest request)
         {
-            var result = productService.AddProduct(request);
-            return Created("", result);
+            return Ok();
+            //var result = productService.AddProduct(request);
+            //return Created("", result);
             
         }
 
