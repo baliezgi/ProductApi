@@ -6,10 +6,12 @@
 
         Product Add(Product product);
 
-        void Update(Product product);
-        void Delete(int id);
+        Product Update(Product product);
+
+        List<Product> Delete(int id);
 
         Product GetById(int id);
+
         int GetTotalValue(int id);
 
     }

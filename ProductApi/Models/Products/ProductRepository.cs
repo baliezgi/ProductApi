@@ -10,10 +10,10 @@ namespace ProductApi.Models.Products
         {
             if (Products.Count == 0)
             {
-                Products.Add(new Product { Id = 1, Name = "Book", Price = 50, Stock = 5 });
-                Products.Add(new Product { Id = 2, Name = "Pencil", Price = 55, Stock = 4 });
-                Products.Add(new Product { Id = 3, Name = "Notepad", Price = 40, Stock = 56 });
-                Products.Add(new Product { Id = 4, Name = "Apple", Price = 500, Stock = 3 });
+                Products.Add(new Product { Id = 1, Name = "Book", Price = 50, Stock = 5, Description= "aaaaaaaaaaaaaaaa", Category= "XL" });
+                Products.Add(new Product { Id = 2, Name = "Pencil", Price = 55, Stock = 4, Description = "bbbbbbbbbbbbbbb", Category = "XXL" });
+                Products.Add(new Product { Id = 3, Name = "Notepad", Price = 40, Stock = 56, Description = "ccccccccccccc", Category = "XL" });
+                Products.Add(new Product { Id = 4, Name = "Apple", Price = 500, Stock = 3, Description = "dddddddddddddd", Category = "XXL" });
             };
         }
         public List<Product> GetAll()
@@ -42,19 +42,23 @@ namespace ProductApi.Models.Products
             return Products.FirstOrDefault(p => p.Id == id);
         }
                                                      
-        public void Update(Product product)
+        public Product Update(Product product)
         {
             var productToUpdateIndex = Products.FindIndex(p => p.Id == product.Id);
             //CaculatreTotalPrice is an extension method and you have to use upline yo cant use 34.line.
-            product.CalculateTotalPrice();
+           // product.CalculateTotalPrice();
             Products[productToUpdateIndex].Name = product.Name;
             Products[productToUpdateIndex].Price = product.Price;
+            return product;
+
+
         }
-        public void Delete(int id)
+        public List<Product> Delete(int id)
         {
             //p lere bak
             var productToDeleteIndex = Products.FindIndex(p => p.Id == id);
             Products.RemoveAt(productToDeleteIndex);
+            return Products;
         }
 
 

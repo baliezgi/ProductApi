@@ -6,8 +6,8 @@ namespace ProductApi.Models.Products
     {
         List<ProductDto> GetAll();
         Product AddProduct(ProductAddDtoRequest request);
-        void Update(ProductUpdateDtoRequest product);
-        void DeleteProduct(int id);
+        Product Update(ProductUpdateDtoRequest product);
+        List<ProductDto> DeleteProduct(int id);
         ProductDto GetById(int id);
         int GetTotalValue(int id);
        

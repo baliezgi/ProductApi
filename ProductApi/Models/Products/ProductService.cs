@@ -6,23 +6,33 @@ using System.Text.Json;
 
 namespace ProductApi.Models.Products
 { 
-    public class ProductService(IProductRepository productRepository) : IProductService
+    public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository = productRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+
+        public ProductService(IProductRepository productRepository, IMapper mapper)
+        {
+            _productRepository = productRepository;
+            _mapper = mapper;
+        }
 
         public List<ProductDto> GetAll()
         {
-            var products = productRepository.GetAll();
+            List<Product> products = _productRepository.GetAll();
+            List<ProductDto> productDtos = _mapper.Map<List<ProductDto>>(products);
+            return productDtos;
 
-            return products.Select(product=> new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-                Stock=product.Stock
+            //var products = _productRepository.Pro
 
-            }).ToList();
+            //return products.Select(product=> new ProductDto
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Price = product.Price,
+                
+
+            //}).ToList();
 
         }
         public Product AddProduct(ProductAddDtoRequest request)
@@ -47,20 +57,21 @@ namespace ProductApi.Models.Products
 
         }
 
-        public void DeleteProduct(int id)
+        public List<ProductDto> DeleteProduct(int id)
         {
-            productRepository.Delete(id);
+            _productRepository.Delete(id);
+            return GetAll();
         }
          
         public int GetTotalValue(int id)
         {
-            return productRepository.GetTotalValue(id);
+            return _productRepository.GetTotalValue(id);
         }
 
 
         public ProductDto GetById(int id)
         {
-            var product = productRepository.GetById(id);
+            var product = _productRepository.GetById(id);
 
             return new ProductDto
             {
@@ -71,16 +82,20 @@ namespace ProductApi.Models.Products
         }
         
 
-        public void Update(ProductUpdateDtoRequest request)
+        public Product Update(ProductUpdateDtoRequest request)
         {
-            Product product = new Product
-            {
-                Id = request.Id,
-                Name = request.Name,
-                Price = request.Price
+            var product = _mapper.Map<Product>(request);
+            return product;
 
-            };
-            productRepository.Update(product);
+
+            //Product product = new Product
+            //{
+            //    Id = request.Id,
+            //    Name = request.Name,
+            //    Price = request.Price
+
+            //};
+            //_productRepository.Update(product);
 
         }
     }

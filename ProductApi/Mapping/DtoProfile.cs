@@ -10,8 +10,10 @@ namespace ProductApi.Mapping;
         public DtoProfile()
         {
 
-            CreateMap<Product, ProductDto>();
-            CreateMap<Product, ProductAddDtoRequest>();
+            CreateMap<Product, ProductDto>().ReverseMap();
+
+
+            CreateMap<Product, ProductAddDtoRequest>().ReverseMap();
             
         
         }
