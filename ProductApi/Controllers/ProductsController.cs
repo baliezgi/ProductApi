@@ -47,7 +47,9 @@ namespace ProductApi.Controllers
         [HttpPost]
         public IActionResult AddProduct(ProductAddDtoRequest request)
         {
-            return Ok();
+            
+            var product = _productService.AddProduct(request);
+            return Created("", product);
 
         }
 
