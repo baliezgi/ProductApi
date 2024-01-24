@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using ProductApi.Models.DTOs;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.JavaScript;
-using System.Text.Json;
 
 namespace ProductApi.Models.Products
 { 
@@ -35,11 +32,27 @@ namespace ProductApi.Models.Products
             //}).ToList();
 
         }
-        public Product AddProduct(ProductAddDtoRequest request)
+        public ResponseDto<int> AddProduct(ProductAddDtoRequest request)
         {
-            //with automapper
-            var product = _mapper.Map<Product>(request);
-            return product;
+            var id = new Random().Next(1, 1000);
+
+
+            var product = new Product
+            {
+                Id = id,
+                Name = request.Name,
+                Price = (int)request.Price.Value
+
+            };
+
+            _productRepository.Add(product);
+
+
+            // return ResponseDto<int>.Fail("hata var");
+
+            return ResponseDto<int>.Success(id);
+
+
 
             #region without automapper
 
@@ -57,6 +70,7 @@ namespace ProductApi.Models.Products
 
         }
 
+
         public List<ProductDto> DeleteProduct(int id)
         {
             _productRepository.Delete(id);
@@ -72,15 +86,18 @@ namespace ProductApi.Models.Products
         public ProductDto GetById(int id)
         {
             var product = _productRepository.GetById(id);
+            return _mapper.Map<ProductDto>(product);
 
-            return new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price
-            };
+            #region without automapper
+            //return new 
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Price = product.Price
+            //}; 
+            #endregion
         }
-        
+
 
         public Product Update(ProductUpdateDtoRequest request)
         {
@@ -98,5 +115,7 @@ namespace ProductApi.Models.Products
             //_productRepository.Update(product);
 
         }
+
+
     }
 }

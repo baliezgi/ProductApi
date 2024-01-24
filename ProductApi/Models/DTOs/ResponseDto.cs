@@ -13,6 +13,7 @@
         {
             return new ResponseDto<T>
             {
+                
                 Data = data
             };
         }

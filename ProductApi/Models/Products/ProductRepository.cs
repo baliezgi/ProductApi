@@ -38,7 +38,7 @@ namespace ProductApi.Models.Products
         }
 
 
-        public Product GetById(int id) 
+        public Product? GetById(int id) 
         {   
             
             return Products.FirstOrDefault(p => p.Id == id);

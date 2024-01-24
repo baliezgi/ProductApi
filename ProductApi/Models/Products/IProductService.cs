@@ -5,7 +5,7 @@ namespace ProductApi.Models.Products
     public interface IProductService
     {
         List<ProductDto> GetAll();
-        Product AddProduct(ProductAddDtoRequest request);
+        ResponseDto<int> AddProduct(ProductAddDtoRequest request);
         Product Update(ProductUpdateDtoRequest product);
         List<ProductDto> DeleteProduct(int id);
         ProductDto GetById(int id);
