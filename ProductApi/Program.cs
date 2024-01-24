@@ -3,22 +3,25 @@ using ProductApi.Filters;
 using ProductApi.Mapping;
 using ProductApi.Models.Products;
 
-WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<ProductHelper>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddScoped<IProductRepository, ProductRepository>(); //dependency injection
-builder.Services.AddScoped<IProductService, ProductService>();//dependency injection
+//builder.Services.AddScoped<IProductRepository, ProductRepository>(); //dependency injection
+//builder.Services.AddScoped<IProductService, ProductService>();//dependency injection
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ActionFilter>();//dependency injection
 //builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddSwaggerGen();
 
-WebApplication app = builder.Build();
+var app = builder.Build();
 //Example of middleware
 //app.Use(async (context, next) =>
 //{
