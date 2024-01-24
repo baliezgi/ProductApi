@@ -36,23 +36,20 @@ namespace ProductApi.Models.Products
         {
             var id = new Random().Next(1, 1000);
 
+            var product = _mapper.Map<Product>(request);
+            product.Id = id;
 
-            var product = new Product
-            {
-                Id = id,
-                Name = request.Name,
-                Price = (int)request.Price.Value
+            //var product = new Product
+            //{
+            //    Id = id,
+            //    Name = request.Name,
+            //    Price = (int)request.Price.Value
 
-            };
+            //};
 
             _productRepository.Add(product);
 
-
-            // return ResponseDto<int>.Fail("hata var");
-
             return ResponseDto<int>.Success(id);
-
-
 
             #region without automapper
 
@@ -67,6 +64,22 @@ namespace ProductApi.Models.Products
             //};
             //productRepository.Add(products); 
             #endregion
+
+        }
+        public Product Update(ProductUpdateDtoRequest request)
+        {
+            var product = _mapper.Map<Product>(request);
+            return product;
+
+
+            //Product product = new Product
+            //{
+            //    Id = request.Id,
+            //    Name = request.Name,
+            //    Price = request.Price
+
+            //};
+            //_productRepository.Update(product);
 
         }
 
@@ -99,22 +112,7 @@ namespace ProductApi.Models.Products
         }
 
 
-        public Product Update(ProductUpdateDtoRequest request)
-        {
-            var product = _mapper.Map<Product>(request);
-            return product;
-
-
-            //Product product = new Product
-            //{
-            //    Id = request.Id,
-            //    Name = request.Name,
-            //    Price = request.Price
-
-            //};
-            //_productRepository.Update(product);
-
-        }
+       
 
 
     }

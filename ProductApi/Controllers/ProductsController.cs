@@ -56,7 +56,8 @@ namespace ProductApi.Controllers
         [HttpPut]
         public IActionResult Update(ProductUpdateDtoRequest request)
         {
-            return Ok();
+            var product = _productService.Update(request);
+            return Ok(product);
         }
 
         //[ServiceFilter<ActionFilter>]

@@ -29,6 +29,22 @@ namespace ProductApi.Models.Products
 
         }
 
+        public Product Update(Product product)
+        {
+            var productToUpdateIndex = Products.FindIndex(p => p.Id == product.Id);
+
+
+            Products[productToUpdateIndex].Name = product.Name;
+            Products[productToUpdateIndex].Price = product.Price;
+
+
+            //CaculatreTotalPrice is an extension method.
+            Console.WriteLine(product.CalculateTotalPriceEx());
+            return product;
+
+
+        }
+
         public int GetTotalValue(int id)
         {   //with GetById we can get the price of the product.
             //Upside Calculate for like helper method not extencion method.
@@ -44,21 +60,7 @@ namespace ProductApi.Models.Products
             return Products.FirstOrDefault(p => p.Id == id);
         }
                                                      
-        public Product Update(Product product)
-        {
-            var productToUpdateIndex = Products.FindIndex(p => p.Id == product.Id);
-            
-     
-            Products[productToUpdateIndex].Name = product.Name;
-            Products[productToUpdateIndex].Price = product.Price;
-
-
-            //CaculatreTotalPrice is an extension method.
-            Console.WriteLine(product.CalculateTotalPriceEx());
-            return product;
-
-
-        }
+        
         public List<Product> Delete(int id)
         {
             //p lere bak

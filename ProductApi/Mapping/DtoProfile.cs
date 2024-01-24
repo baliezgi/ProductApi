@@ -14,6 +14,8 @@ namespace ProductApi.Mapping;
 
 
             CreateMap<Product, ProductAddDtoRequest>().ReverseMap();
+
+            CreateMap<Product, ProductUpdateDtoRequest>().ReverseMap();
             
         
         }
