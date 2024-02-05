@@ -10,10 +10,10 @@ namespace ProductApi.Models.Products
         {
             if (Products.Count == 0)
             {
-                Products.Add(new Product { Id = 1, Name = "Book", Price = 50, Stock = 5, Description= "aaaaaaaaaaaaaaaa", Category= "XL" });
-                Products.Add(new Product { Id = 2, Name = "Pencil", Price = 55, Stock = 4, Description = "bbbbbbbbbbbbbbb", Category = "XXL" });
-                Products.Add(new Product { Id = 3, Name = "Notepad", Price = 40, Stock = 56, Description = "ccccccccccccc", Category = "XL" });
-                Products.Add(new Product { Id = 4, Name = "Apple", Price = 500, Stock = 3, Description = "dddddddddddddd", Category = "XXL" });
+                Products.Add(new Product { Id = 1, Name = "Book", Price = 50, Stock = 5, Description= "aaaaaaaaaaaaaaaa", Size= "XL" });
+                Products.Add(new Product { Id = 2, Name = "Pencil", Price = 55, Stock = 4, Description = "bbbbbbbbbbbbbbb", Size = "XXL" });
+                Products.Add(new Product { Id = 3, Name = "Notepad", Price = 40, Stock = 56, Description = "ccccccccccccc", Size = "XL" });
+                Products.Add(new Product { Id = 4, Name = "Apple", Price = 500, Stock = 3, Description = "dddddddddddddd", Size = "XXL" });
             };
         }
         public List<Product> GetAll()

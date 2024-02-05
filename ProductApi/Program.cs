@@ -1,7 +1,9 @@
 using ProductApi.Controllers;
 using ProductApi.Filters;
-using ProductApi.Mapping;
 using ProductApi.Models.Products;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using ProductApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,13 @@ builder.Services.AddSingleton<ProductHelper>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+});
+
 
 //builder.Services.AddScoped<IProductRepository, ProductRepository>(); //dependency injection
 //builder.Services.AddScoped<IProductService, ProductService>();//dependency injection

@@ -1,4 +1,4 @@
-﻿namespace ProductApi.Models.DTOs
+﻿namespace ProductApi.Models.Shared
 {
     public class ResponseDto<T>
     {
@@ -13,7 +13,7 @@
         {
             return new ResponseDto<T>
             {
-                
+
                 Data = data
             };
         }

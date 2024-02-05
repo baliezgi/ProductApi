@@ -1,0 +1,15 @@
+﻿using ProductApi.Models.Products;
+
+namespace ProductApi.Models.Categories
+{
+    public class Category
+    {
+
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+
+        public List<Product> Products { get; set; } 
+       
+
+    }
+}

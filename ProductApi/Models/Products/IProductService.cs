@@ -1,4 +1,5 @@
 ﻿using ProductApi.Models.DTOs;
+using ProductApi.Models.Shared;
 
 namespace ProductApi.Models.Products
 {

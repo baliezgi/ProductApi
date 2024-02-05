@@ -1,10 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using ProductApi.Filters;
-using ProductApi.Mapping;
-using ProductApi.Models;
 using ProductApi.Models.DTOs;
 using ProductApi.Models.Products;
 

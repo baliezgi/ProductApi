@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using ProductApi.Models.DTOs;
+using ProductApi.Models.Shared;
 
 namespace ProductApi.Models.Products
-{ 
+{
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
